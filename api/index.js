@@ -10,12 +10,13 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import NextCors  from 'nextjs-cors';
 
 const apiProxy = createProxyMiddleware({
-  target: "https://api.pinboard.in",
+  target: "https://api.opensea.io/api",
   changeOrigin: true,
   pathRewrite: {
     "^/api": "" // Strip "/api" from the URL 
   },
   onProxyRes(proxyRes) {
+    proxyRes.headers["X-API-KEY"] = process.env.OPENSEA_API_KEY,
     proxyRes.headers["access-control-allow-origin"] = "*", 
     proxyRes.headers["access-control-allow-methods"] = "DELETE, POST, GET, OPTIONS, PUT, PATCH",
     proxyRes.headers["access-control-allow-headers"] = "Origin, X-Requested-With, Content-Type, Accept" 
