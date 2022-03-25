@@ -15,7 +15,6 @@ const apiProxy = createProxyMiddleware({
     "^/api": "" // Strip "/api" from the URL 
   },
   onProxyReq: (proxyReq, req, res) => {
-    console.log(req)
     // proxying to hide the api key from the client
     proxyReq.setHeader('X-API-KEY', process.env.OPENSEA_API_KEY);
     proxyReq.setHeader('X-API-KEY', process.env.OPENSEA_API_KEY);
@@ -29,6 +28,7 @@ const apiProxy = createProxyMiddleware({
 // path, we add a rewrite in "vercel.json" to allow the "api" directory to catch
 // all "/api/*" requests.
 export default async function (req, res) {
+  console.log(req);
   // Proxy "/api/*" requests to the pinboard API.
   return apiProxy(req, res);
 };
