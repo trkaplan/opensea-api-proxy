@@ -16,7 +16,7 @@ const apiProxy = createProxyMiddleware({
     "^/api": "" // Strip "/api" from the URL 
   },
   onProxyRes(proxyRes) {
-    proxyRes.headers["X-API-KEY"] = process.env.OPENSEA_API_KEY,
+    proxyRes.headers["X-API-KEY"] = process.env.OPENSEA_API_KEY
   }
 });
 
