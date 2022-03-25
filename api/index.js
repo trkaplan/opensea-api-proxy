@@ -15,7 +15,9 @@ const apiProxy = createProxyMiddleware({
     "^/api": "" // Strip "/api" from the URL 
   },
   onProxyReq: (proxyReq, req, res) => {
+    console.log(req)
     // proxying to hide the api key from the client
+    proxyReq.setHeader('X-API-KEY', process.env.OPENSEA_API_KEY);
     proxyReq.setHeader('X-API-KEY', process.env.OPENSEA_API_KEY);
   }
 });
