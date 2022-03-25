@@ -7,7 +7,6 @@
 // Examples:
 // GET /api/v1/posts/all?format=json → https://api.pinboard.in/v1/posts/all?format=json
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import NextCors  from 'nextjs-cors';
 
 const apiProxy = createProxyMiddleware({
   target: "https://api.opensea.io/api",
@@ -15,8 +14,9 @@ const apiProxy = createProxyMiddleware({
   pathRewrite: {
     "^/api": "" // Strip "/api" from the URL 
   },
-  onProxyRes(proxyRes) {
-    proxyRes.headers["X-API-KEY"] = process.env.OPENSEA_API_KEY
+  onProxyReq: (proxyReq, req, res) => {
+    // proxying to hide the api key from the client
+    proxyReq.setHeader('X-API-KEY', process.env.OPENSEA_API_KEY);
   }
 });
 
@@ -27,13 +27,7 @@ const apiProxy = createProxyMiddleware({
 // path, we add a rewrite in "vercel.json" to allow the "api" directory to catch
 // all "/api/*" requests.
 export default async function (req, res) {
-  await NextCors(req, res, {
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    origin: '*',
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
- });
   // Proxy "/api/*" requests to the pinboard API.
   return apiProxy(req, res);
 };
-
 
