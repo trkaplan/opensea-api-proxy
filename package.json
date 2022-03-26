@@ -1,8 +1,8 @@
 {
-  "name": "pinboard-api-proxy",
+  "name": "opensea-api-proxy",
   "version": "1.0.0",
-  "author": "Mazzarolo Matteo",
-  "description": "Tiny proxy server to allow all origins to fetch the Pinboard API",
+  "author": "Tuncay Kaplan",
+  "description": "Tiny proxy server to hide API key in requests to OpenSea API",
   "main": "api/index.js",
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,6 @@
     "vercel": "^23.1.2"
   },
   "dependencies": {
-    "http-proxy-middleware": "^2.0.2",
-    "nextjs-cors": "^2.1.0"
+    "http-proxy-middleware": "^2.0.2"
   }
 }

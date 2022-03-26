@@ -1,27 +1,21 @@
-# Pinboard API Proxy <img src="./.github/banner.png" width="110" align="left">
+# OpenSea API Proxy
 
-Tiny proxy server to allow all origins to fetch the Pinboard API. 
+Tiny proxy server to hide API key in requests to OpenSea API. 
 
 <br />
 
-The [Pinboard API](https://pinboard.in/howto/#api) doesn't have CORS enabled, so you can't make API calls directly from the browser (for context, [here's an old thread on the subject](https://groups.google.com/g/pinboard-dev/c/RtyJC1Gm67E/m/OvkhoWovnRYJ)).
-
 This tiny Vercel serverless function acts as a proxy to the Pinboard API allowing requests from all origins.
 
-Deployed at [pinboard-api-proxy.vercel.app](https://pinboard-api-proxy.vercel.app/).
-
-## Setup
-
-1. Fork this repo
-2. Link it to your Vercel dashboard
-3. That's it 👍
+Deployed at [opensea-api-proxy.vercel.app](https://opensea-api-proxy.vercel.app/).
 
 ## Usage
 
-Call `/api/*` just like if it was the Pinboard API.
+Call `/api/*` just like if it was the OpenSea API.
 
-For example, `/api/v1/posts/all?format=json` will be proxied to `https://api.pinboard.in/v1/posts/all?format=json`.
+For example, `/api/v1/assets` will be proxied to `https://api.opensea.io/api/v1/assets`.
 
 ## License
 
 Released undet the [MIT](./LICENSE.md) license.
+
+Forked from: [github.com/mmazzarolo/pinboard-api-proxy](https://github.com/mmazzarolo/pinboard-api-proxy)
