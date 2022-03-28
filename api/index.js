@@ -10,7 +10,8 @@ const apiProxy = createProxyMiddleware({
   onProxyReq: (proxyReq, req, res) => {
     // proxying to hide the api key from the client
     proxyReq.setHeader('X-API-KEY', process.env.OPENSEA_API_KEY);
-  }
+    proxyReq.setHeader('Cache-Control', 'public, max-age=3600')
+  },
 });
 
 // In Vercel, any file inside the "api" directory is mapped to "/api" and
